@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for patient in records %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <small class="text-muted">{{ patient.date_visited.strftime('%d-%m-%Y') }}</small>
+            </div>
+            <h2><a class="article-title" href= "{{ url_for('record', record_id=patient.id) }}">{{ patient.name }}</a></h2>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

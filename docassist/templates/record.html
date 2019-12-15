@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        <small class="text-muted">{{ patient.date_visited.strftime('%d-%m-%Y') }}</small>
+        {% if patient.author == current_user %}
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_record', record_id=patient.id) }}">Update</a>
+            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+          </div>
+        {% endif %}
+      </div>
+      <h2 class="article-title">{{ patient.name }}</h2>
+      <p class="article-content"> Age : {{ patient.age }}</p>
+      <p class="article-content"> Gender : {{ patient.gender }}</p>
+      <p class="article-content"> Contact : {{ patient.contact }}</p>
+      <p class="article-content"> Weight : {{ patient.weight }}</p>
+      <p class="article-content"> Height : {{ patient.height }}</p>
+      <p class="article-content"> Medical History : {{ patient.medical_history }}</p>
+      <p class="article-content"> X-Ray : <img src="{{ image_file }}" height="250px" width="250px"> </p>
+      <p class="article-content"> Result : {% if patient.result == "YES" %} <span class="btn-danger"> {% else %} <span class="btn-success"> {% endif %}   
+          <b style="padding: 14px 28px; font-size: 16px"> {{ patient.result }} </b> 
+        </span> 
+      </p>
+    </div>
+  </article>
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{ url_for('delete_record', record_id=patient.id) }}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
