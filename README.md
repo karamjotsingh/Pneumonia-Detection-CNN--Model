@@ -15,7 +15,7 @@ Install the following packages using pip3
 •	pip3 install matplotlib
 •	pip3 install tensorflow
 •	pip3 install keras
-•	pip3 install lask
+•	pip3 install flask
 •	pip3 install flask-wtf
 •	pip3 install flask-sqlalchemy
 •	pip3 install flask-bcrypt
