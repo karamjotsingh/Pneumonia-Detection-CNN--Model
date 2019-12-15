@@ -22,3 +22,7 @@ pip3 install flask-sqlalchemy
 pip3 install flask-bcrypt
 pip3 install flask-login
 ```
+## Run
+```bash
+python3 run.py
+```
